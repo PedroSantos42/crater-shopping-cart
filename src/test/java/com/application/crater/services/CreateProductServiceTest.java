@@ -1,20 +1,25 @@
 package com.application.crater.services;
 
-import com.application.crater.entities.Product;
-import com.application.crater.repositories.ProductRepository;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.springframework.test.context.junit4.SpringRunner;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.times;
 
-@RunWith(SpringRunner.class)
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import com.application.crater.entities.Product;
+import com.application.crater.repositories.ProductRepository;
+
+
+@ExtendWith(SpringExtension.class)
+@TestInstance(Lifecycle.PER_CLASS)
 public class CreateProductServiceTest {
 
     @Mock
@@ -25,7 +30,7 @@ public class CreateProductServiceTest {
 
     private Product product;
 
-    @Before
+    @BeforeAll
     public void setUp() {
         this.product = mockProduct();
     }
