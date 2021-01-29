@@ -2,8 +2,8 @@ package com.application.crater.services;
 
 import com.application.crater.entities.Product;
 import com.application.crater.repositories.ProductRepository;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -25,7 +25,7 @@ public class CreateProductServiceTest {
 
     private Product product;
 
-    @BeforeAll
+    @Before
     public void setUp() {
         this.product = mockProduct();
     }
