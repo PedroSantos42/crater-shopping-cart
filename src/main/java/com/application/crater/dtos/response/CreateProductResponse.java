@@ -1,15 +1,10 @@
-package com.application.crater.entities;
+package com.application.crater.dtos.response;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.io.Serializable;
 
-@Entity
-public class Product {
+public class CreateProductResponse implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	private String name;
@@ -18,10 +13,10 @@ public class Product {
 
 	private Integer quantity;
 
-	public Product() {
+	public CreateProductResponse() {
 	}
 
-	public Product(Integer id, String name, Double price, Integer quantity) {
+	public CreateProductResponse(Integer id, String name, Double price, Integer quantity) {
 		super();
 		this.id = id;
 		this.name = name;

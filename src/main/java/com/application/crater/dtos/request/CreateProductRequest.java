@@ -1,40 +1,28 @@
-package com.application.crater.entities;
+package com.application.crater.dtos.request;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.io.Serializable;
 
-@Entity
-public class Product {
+import javax.validation.constraints.NotEmpty;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+public class CreateProductRequest implements Serializable {
+	private static final long serialVersionUID = 1L;
 
+	@NotEmpty(message = "Nome obrigatório")
 	private String name;
 
+	@NotEmpty(message = "Preço obrigatório")
 	private Double price;
 
 	private Integer quantity;
 
-	public Product() {
+	public CreateProductRequest() {
 	}
 
-	public Product(Integer id, String name, Double price, Integer quantity) {
+	public CreateProductRequest(String name, Double price, Integer quantity) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.quantity = quantity;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getName() {
