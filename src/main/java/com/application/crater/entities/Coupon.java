@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Cupon {
+public class Coupon {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,5 +17,5 @@ public class Cupon {
 
     private Double discount;
 
-    private String ocasion;
+    private String occasion;
 }
