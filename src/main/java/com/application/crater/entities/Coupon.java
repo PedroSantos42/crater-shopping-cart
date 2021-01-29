@@ -5,9 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import lombok.Data;
-
-@Data
 @Entity
 public class Coupon {
     
@@ -18,4 +15,37 @@ public class Coupon {
     private Double discount;
 
     private String occasion;
+    
+    public Coupon() {}
+
+	public Coupon(Integer id, Double discount, String occasion) {
+		super();
+		this.id = id;
+		this.discount = discount;
+		this.occasion = occasion;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Double getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(Double discount) {
+		this.discount = discount;
+	}
+
+	public String getOccasion() {
+		return occasion;
+	}
+
+	public void setOccasion(String occasion) {
+		this.occasion = occasion;
+	}
 }
