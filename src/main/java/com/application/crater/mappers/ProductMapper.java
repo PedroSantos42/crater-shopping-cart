@@ -10,11 +10,11 @@ public class ProductMapper {
 		return new Product(null, dto.getName(), dto.getPrice(), dto.getQuantity());
 	}
 
-	public static CreateProductRequest createRequestFromEntity(Product obj) {
+	public static CreateProductRequest createRequestDTOFromEntity(Product obj) {
 		return new CreateProductRequest(obj.getName(), obj.getPrice(), obj.getQuantity());
 	}
 
-	public static CreateProductResponse createResponseFromEntity(Product obj) {
+	public static CreateProductResponse createResponseDTOFromEntity(Product obj) {
 		return new CreateProductResponse(obj.getId(), obj.getName(), obj.getPrice(), obj.getQuantity());
 	}
 }

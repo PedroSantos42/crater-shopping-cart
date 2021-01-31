@@ -16,11 +16,11 @@ import com.application.crater.entities.Product;
 @ExtendWith(SpringExtension.class)
 @TestInstance(Lifecycle.PER_CLASS)
 public class ProductMapperTest {
-	
+
 	@Test
 	public void givenCallToConstructor_returnCreatedInstance() {
 		ProductMapper mapper = new ProductMapper();
-		
+
 		assertNotNull(mapper);
 	}
 
@@ -39,7 +39,7 @@ public class ProductMapperTest {
 	public void givenProductEntity_mapToRequest_thenReturnCreatedDTO() {
 		Product product = mockProduct();
 
-		CreateProductRequest requestDTO = ProductMapper.createRequestFromEntity(product);
+		CreateProductRequest requestDTO = ProductMapper.createRequestDTOFromEntity(product);
 
 		assertEquals(requestDTO.getName(), product.getName());
 		assertEquals(requestDTO.getPrice(), product.getPrice());
@@ -50,7 +50,7 @@ public class ProductMapperTest {
 	public void givenProductEntity_mapToResponse_thenReturnCreatedDTO() {
 		Product product = mockProduct();
 
-		CreateProductResponse responseDTO = ProductMapper.createResponseFromEntity(product);
+		CreateProductResponse responseDTO = ProductMapper.createResponseDTOFromEntity(product);
 
 		assertEquals(responseDTO.getName(), product.getName());
 		assertEquals(responseDTO.getPrice(), product.getPrice());
@@ -58,10 +58,23 @@ public class ProductMapperTest {
 	}
 
 	private CreateProductRequest mockRequest() {
-		return new CreateProductRequest("Computador", 2500.0, 5);
+		CreateProductRequest request = new CreateProductRequest();
+
+		request.setName("Computador");
+		request.setPrice(2500.0);
+		request.setQuantity(5);
+
+		return request;
 	}
 
 	private Product mockProduct() {
-		return new Product(null, "Computador", 2500.0, 5);
+		Product product = new Product();
+
+		product.setId(null);
+		product.setName("Computador");
+		product.setPrice(2500.0);
+		product.setQuantity(5);
+
+		return product;
 	}
 }
