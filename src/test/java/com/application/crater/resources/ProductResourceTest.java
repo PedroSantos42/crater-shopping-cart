@@ -16,15 +16,21 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.test.context.ActiveProfiles;
 
-@ExtendWith(SpringExtension.class)
 @TestInstance(Lifecycle.PER_CLASS)
+@SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
+@ActiveProfiles("test")
 public class ProductResourceTest {
 
-	private String productEndpoint = "http://localhost:8080/produto";
+	@Value("${server.port}")
+	private String serverPort = "8888";
+
+	private String endpoint = "http://localhost:" + serverPort + "/produto";
 
 	private CloseableHttpClient client;
 
@@ -47,11 +53,13 @@ public class ProductResourceTest {
 		String name = "Notebook";
 		Double price = 2400.99;
 		Integer quantity = 12;
+		String category = "Tecnologia";
 
-		HttpPost httpPost = new HttpPost(productEndpoint);
+		HttpPost httpPost = new HttpPost(endpoint);
 		httpPost.setHeader("Content-type", "application/json");
 
-		String json = String.format("{ \"name\": \"%s\", \"price\": %s, \"quantity\": %s }", name, price, quantity);
+		String json = String.format("{ \"name\": \"%s\", \"price\": %s, \"quantity\": %s, \"category\": \"%s\" }", name,
+				price, quantity, category);
 		StringEntity entity = new StringEntity(json);
 		httpPost.setEntity(entity);
 

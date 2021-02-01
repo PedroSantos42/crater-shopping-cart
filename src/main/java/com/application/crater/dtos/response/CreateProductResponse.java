@@ -13,15 +13,18 @@ public class CreateProductResponse implements Serializable {
 
 	private Integer quantity;
 
+	private String category;
+
 	public CreateProductResponse() {
 	}
 
-	public CreateProductResponse(Integer id, String name, Double price, Integer quantity) {
+	public CreateProductResponse(Integer id, String name, Double price, Integer quantity, String category) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.quantity = quantity;
+		this.category = category;
 	}
 
 	public Integer getId() {
@@ -54,5 +57,13 @@ public class CreateProductResponse implements Serializable {
 
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 }

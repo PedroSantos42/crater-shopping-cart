@@ -15,14 +15,17 @@ public class CreateProductRequest implements Serializable {
 
 	private Integer quantity;
 
+	private String category;
+
 	public CreateProductRequest() {
 	}
 
-	public CreateProductRequest(String name, Double price, Integer quantity) {
+	public CreateProductRequest(String name, Double price, Integer quantity, String category) {
 		super();
 		this.name = name;
 		this.price = price;
 		this.quantity = quantity;
+		this.category = category;
 	}
 
 	public String getName() {
@@ -47,5 +50,13 @@ public class CreateProductRequest implements Serializable {
 
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 }

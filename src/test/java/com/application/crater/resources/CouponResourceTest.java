@@ -16,15 +16,21 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.test.context.ActiveProfiles;
 
-@ExtendWith(SpringExtension.class)
 @TestInstance(Lifecycle.PER_CLASS)
+@SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
+@ActiveProfiles("test")
 public class CouponResourceTest {
 
-	private String CouponEndpoint = "http://localhost:8080/cupom";
+	@Value("${server.port}")
+	private String serverPort = "8888";
+
+	private String endpoint = "http://localhost:" + serverPort + "/cupom";
 
 	private CloseableHttpClient client;
 
@@ -47,7 +53,7 @@ public class CouponResourceTest {
 		Double discount = 25.0;
 		String occasion = "NATAL";
 
-		HttpPost httpPost = new HttpPost(CouponEndpoint);
+		HttpPost httpPost = new HttpPost(endpoint);
 		httpPost.setHeader("Content-type", "application/json");
 
 		String json = String.format("{ \"discount\": %s, \"occasion\": \"%s\" }", discount, occasion);
