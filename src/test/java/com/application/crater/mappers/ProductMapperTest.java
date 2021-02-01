@@ -11,6 +11,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.application.crater.dtos.request.CreateProductRequest;
 import com.application.crater.dtos.response.CreateProductResponse;
+import com.application.crater.entities.Category;
 import com.application.crater.entities.Product;
 
 @ExtendWith(SpringExtension.class)
@@ -33,6 +34,7 @@ public class ProductMapperTest {
 		assertEquals(requestDTO.getName(), product.getName());
 		assertEquals(requestDTO.getPrice(), product.getPrice());
 		assertEquals(requestDTO.getQuantity(), product.getQuantity());
+		assertEquals(requestDTO.getCategory(), product.getCategory().getName());
 	}
 
 	@Test
@@ -44,6 +46,7 @@ public class ProductMapperTest {
 		assertEquals(requestDTO.getName(), product.getName());
 		assertEquals(requestDTO.getPrice(), product.getPrice());
 		assertEquals(requestDTO.getQuantity(), product.getQuantity());
+		assertEquals(requestDTO.getCategory(), product.getCategory().getName());
 	}
 
 	@Test
@@ -55,6 +58,7 @@ public class ProductMapperTest {
 		assertEquals(responseDTO.getName(), product.getName());
 		assertEquals(responseDTO.getPrice(), product.getPrice());
 		assertEquals(responseDTO.getQuantity(), product.getQuantity());
+		assertEquals(responseDTO.getCategory(), product.getCategory().getName());
 	}
 
 	private CreateProductRequest mockRequest() {
@@ -74,6 +78,7 @@ public class ProductMapperTest {
 		product.setName("Computador");
 		product.setPrice(2500.0);
 		product.setQuantity(5);
+		product.setCategory(new Category(null, "Tecnologia"));
 
 		return product;
 	}

@@ -18,9 +18,10 @@ public class ProductTest {
 		double price = 9.90;
 		String name = "NOME-PRODUTO";
 		int quantity = 10;
+		Category category = new Category(null, "NOME-CATEGORIA");
 
 		Product product = new Product();
-		product = new Product(id, name, price, quantity);
+		product = new Product(id, name, price, quantity, category);
 		product.setId(id);
 		product.setPrice(price);
 		product.setQuantity(quantity);
